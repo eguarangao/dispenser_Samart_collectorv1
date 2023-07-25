@@ -29,8 +29,11 @@ class DispenserDapter(
 
     override fun getItemCount(): Int = dispenseres.size
     fun add(dispenser: DispenserEntity) {
-        dispenseres.add(dispenser)
-        notifyDataSetChanged()
+        if(!dispenseres.contains(dispenser)){
+            dispenseres.add(dispenser)
+            notifyItemInserted(dispenseres.size-1)
+        }
+
     }
 
     fun setDispenseres(dispenseres: MutableList<DispenserEntity>) {

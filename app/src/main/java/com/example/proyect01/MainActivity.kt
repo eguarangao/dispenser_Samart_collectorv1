@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
 
-       // mBbinding.fab.hide()
+        // mBbinding.fab.hide()
         hideFab()
     }
 
@@ -72,8 +72,14 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
      */
 
     override fun hideFab(isVisible: Boolean) {
-   if(isVisible)mBbinding.fab.show()else mBbinding.fab.hide()
+        if (isVisible) mBbinding.fab.show() else mBbinding.fab.hide()
     }
 
+    override fun addDispenser(dispenserEntity: DispenserEntity) {
+        mAdapter.add(dispenserEntity)
+    }
 
+    override fun updateDispense(dispenserEntity: DispenserEntity) {
+
+    }
 }

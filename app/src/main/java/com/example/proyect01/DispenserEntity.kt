@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 data class DispenserEntity(
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
     var name: String,
-    var referencia: String,
-    var direccion: String
+    var referencia: String
 ) {
 }

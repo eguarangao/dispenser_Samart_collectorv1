@@ -12,7 +12,7 @@ interface DispenserDao {
     fun getAllDispenser(): MutableList<DispenserEntity>
 
     @Insert
-    fun addDispenser(dispenserEntity: DispenserEntity)
+    fun addDispenser(dispenserEntity: DispenserEntity):Long
 
     @Update
     fun updateDispenser(dispenserEntity: DispenserEntity)
