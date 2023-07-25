@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethod
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.example.proyect01.databinding.FragmentEditDispenserBinding
 import com.google.android.material.snackbar.Snackbar
 import org.jetbrains.anko.doAsync
@@ -65,10 +66,11 @@ class EditDispenserFragment : Fragment() {
                     uiThread {
                         mActivity?.addDispenser(dispenser)
                         hideKeyBoard()
-                        Snackbar.make(
-                            mBinding.root, R.string.edit_dispenser_message_save_success,
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+//                        Snackbar.make(
+//                            mBinding.root, R.string.edit_dispenser_message_save_success,
+//                            Snackbar.LENGTH_SHORT
+//                        ).show()
+                        Toast.makeText(mActivity, R.string.edit_dispenser_message_save_success,Toast.LENGTH_SHORT).show()
                         mActivity?.onBackPressed()
                     }
                 }

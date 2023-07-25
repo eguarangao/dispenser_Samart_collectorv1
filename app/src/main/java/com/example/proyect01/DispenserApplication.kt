@@ -2,6 +2,9 @@ package com.example.proyect01
 
 import android.app.Application
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.sqlite.db.SupportSQLiteOpenHelper
 
 class DispenserApplication : Application() {
     companion object {
@@ -10,6 +13,19 @@ class DispenserApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        dataBase=Room.databaseBuilder(this,DispenserDataBase::class.java,"DispenserDataBase").build()
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+
+
+            override fun migrate(dataBase: SupportSQLiteDatabase) {
+
+                dataBase.execSQL("ALTER TABLE DispenserEntity ADD COLUMN direccion TEXT NOT NULL DEFAULT''")
+            }
+        }
+
+        dataBase = Room.databaseBuilder(
+            this, DispenserDataBase::
+            class.java, "DispenserDataBase"
+        ).addMigrations(MIGRATION_1_2).build()
+
     }
 }
