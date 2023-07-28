@@ -22,15 +22,19 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
         setupRecyclerView()
     }
 
-    private fun launchEditFragment() {
+    private fun launchEditFragment(args :Bundle?=null) {
         val fragment = EditDispenserFragment()
+        if(args!=null)fragment.arguments=args
+
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+
         fragmentTransaction.add(R.id.containerMain, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
 
-        // mBbinding.fab.hide()
+
+
         hideFab()
     }
 
@@ -54,8 +58,10 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
 
     }
 
-    override fun onCLick(dispenserEntity: DispenserEntity) {
-        TODO("Not yet implemented")
+    override fun onCLick(dispenserId: Long) {
+        val args = Bundle()//le vamos a pasar los argumentos
+        args.putLong(getString(R.string.arg_id),dispenserId)
+        launchEditFragment(args)
     }
 
     override fun onDeleteDispenser(dispenserEntity: DispenserEntity) {

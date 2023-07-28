@@ -1,6 +1,6 @@
 package com.example.proyect01
 
 interface OnClickListener {
-    fun onCLick(dispenserEntity: DispenserEntity)
+    fun onCLick(dispenserId: Long)
     fun onDeleteDispenser(dispenserEntity: DispenserEntity)
 }

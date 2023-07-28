@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethod
 import android.view.inputmethod.InputMethodManager
+import android.widget.TimePicker
 import android.widget.Toast
 import com.example.proyect01.databinding.FragmentEditDispenserBinding
 import com.google.android.material.snackbar.Snackbar
@@ -21,6 +22,14 @@ class EditDispenserFragment : Fragment() {
     private lateinit var mBinding: FragmentEditDispenserBinding
 
     private var mActivity: MainActivity? = null
+
+    //variables para sber si si edita o se crea
+    private var mEditMode: Boolean = false
+    private var mCreateMode: Boolean = false
+
+    //
+    private var mDispenserEntity: DispenserEntity? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,6 +42,13 @@ class EditDispenserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val id = arguments?.getLong(getString(R.string.arg_id), 0)
+        if (id != null && id != 0L) {
+            mEditMode = true
+            getDispenser(id)
+        } else {
+            Toast.makeText(activity, id.toString(), Toast.LENGTH_SHORT).show()
+        }
         mActivity = activity as? MainActivity
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mActivity?.supportActionBar?.title = getString(R.string.edit_dispenser_title_add)
@@ -70,7 +86,11 @@ class EditDispenserFragment : Fragment() {
 //                            mBinding.root, R.string.edit_dispenser_message_save_success,
 //                            Snackbar.LENGTH_SHORT
 //                        ).show()
-                        Toast.makeText(mActivity, R.string.edit_dispenser_message_save_success,Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            mActivity,
+                            R.string.edit_dispenser_message_save_success,
+                            Toast.LENGTH_SHORT
+                        ).show()
                         mActivity?.onBackPressed()
                     }
                 }
@@ -86,6 +106,15 @@ class EditDispenserFragment : Fragment() {
         val inm = mActivity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (view != null) {
             inm.hideSoftInputFromWindow(requireView().windowToken, 0)
+        }
+    }
+
+    private fun getDispenser(id: Long) {
+        doAsync {
+            mDispenserEntity = DispenserApplication.dataBase.dispenserDao().getDispenserById(id)
+            uiThread {
+
+            }
         }
     }
 

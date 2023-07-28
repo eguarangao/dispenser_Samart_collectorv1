@@ -56,7 +56,7 @@ class DispenserDapter(
             with(binding.root)
             {
                 setOnClickListener {
-                    listener.onCLick(dispenserEntity)
+                    listener.onCLick(dispenserEntity.id)
                 }
                 setOnLongClickListener {
                     listener.onDeleteDispenser(dispenserEntity)

@@ -11,11 +11,15 @@ interface DispenserDao {
     @Query("Select * from DispenserEntity")
     fun getAllDispenser(): MutableList<DispenserEntity>
 
+    @Query("Select * from DispenserEntity where id=:id")
+    fun getDispenserById(id: Long): DispenserEntity
+
     @Insert
-    fun addDispenser(dispenserEntity: DispenserEntity):Long
+    fun addDispenser(dispenserEntity: DispenserEntity): Long
 
     @Update
     fun updateDispenser(dispenserEntity: DispenserEntity)
+
     @Delete
     fun deleteDispenser(dispenserEntity: DispenserEntity)
 }
