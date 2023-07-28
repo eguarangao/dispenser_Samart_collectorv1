@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.proyect01.databinding.ItemDispenserBinding
@@ -31,6 +32,7 @@ class DispenserDapter(
     fun add(dispenser: DispenserEntity) {
         if(!dispenseres.contains(dispenser)){
             dispenseres.add(dispenser)
+            System.out.println(dispenser.toString()+"ebert")
             notifyItemInserted(dispenseres.size-1)
         }
 

@@ -74,7 +74,9 @@ class EditDispenserFragment : Fragment() {
                 val dispenser =
                     DispenserEntity(
                         name = mBinding.etName.text.toString().trim(),
-                        referencia = mBinding.etDescription.text.toString().trim()
+                        referencia = mBinding.etDescription.text.toString().trim(),
+                        direccion = mBinding.etDireccion.text.toString().trim()
+
                     )
                 doAsync {
                     dispenser.id =
@@ -113,8 +115,17 @@ class EditDispenserFragment : Fragment() {
         doAsync {
             mDispenserEntity = DispenserApplication.dataBase.dispenserDao().getDispenserById(id)
             uiThread {
-
+                if (mDispenserEntity != null) setUiDispenser(mDispenserEntity!!)
             }
+        }
+    }
+
+    private fun setUiDispenser(dispenserEntity: DispenserEntity) {
+        with(mBinding) {
+            etName.setText(dispenserEntity.name)
+            etDescription.setText(dispenserEntity.referencia)
+            etDireccion.setText(dispenserEntity.direccion)
+
         }
     }
 
