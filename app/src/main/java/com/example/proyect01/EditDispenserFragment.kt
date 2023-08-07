@@ -2,6 +2,7 @@ package com.example.proyect01
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,8 +14,10 @@ import android.view.inputmethod.InputMethod
 import android.view.inputmethod.InputMethodManager
 import android.widget.TimePicker
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.example.proyect01.databinding.FragmentEditDispenserBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -47,12 +50,30 @@ class EditDispenserFragment : Fragment() {
             mEditMode = true
             getDispenser(id)
         } else {
-            Toast.makeText(activity, id.toString(), Toast.LENGTH_SHORT).show()
+            mEditMode = false
+            mDispenserEntity = DispenserEntity(name = "", referencia = "", direccion = "")
         }
+        setupActionBar()
+
+        setUpTextFielps()
+
+    }
+
+    private fun setupActionBar() {
         mActivity = activity as? MainActivity
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        mActivity?.supportActionBar?.title = getString(R.string.edit_dispenser_title_add)
+        mActivity?.supportActionBar?.title =
+            if (mEditMode) getString(R.string.edit_dispenser_message_edit)
+            else getString(R.string.edit_dispenser_title_add)
         setHasOptionsMenu(true)
+    }
+
+    private fun setUpTextFielps() {
+        with(mBinding) {
+            etName.addTextChangedListener { validateFields(tilName) }
+            etDescription.addTextChangedListener { validateFields(tilDescription) }
+            etDireccion.addTextChangedListener { validateFields(tilDireccion) }
+        }
 
     }
 
@@ -71,29 +92,52 @@ class EditDispenserFragment : Fragment() {
             }
 
             R.id.action_save -> {
-                val dispenser =
-                    DispenserEntity(
-                        name = mBinding.etName.text.toString().trim(),
-                        referencia = mBinding.etDescription.text.toString().trim(),
-                        direccion = mBinding.etDireccion.text.toString().trim()
-
+                if (mDispenserEntity != null && validateFields(
+                        mBinding.tilDireccion,
+                        mBinding.tilDescription,
+                        mBinding.tilName
                     )
-                doAsync {
-                    dispenser.id =
-                        DispenserApplication.dataBase.dispenserDao().addDispenser(dispenser)
-                    uiThread {
-                        mActivity?.addDispenser(dispenser)
-                        hideKeyBoard()
-//                        Snackbar.make(
-//                            mBinding.root, R.string.edit_dispenser_message_save_success,
-//                            Snackbar.LENGTH_SHORT
-//                        ).show()
-                        Toast.makeText(
-                            mActivity,
-                            R.string.edit_dispenser_message_save_success,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        mActivity?.onBackPressed()
+                ) {
+                    /* val dispenser =
+                     DispenserEntity(
+                         name = mBinding.etName.text.toString().trim(),
+                         referencia = mBinding.etDescription.text.toString().trim(),
+                         direccion = mBinding.etDireccion.text.toString().trim()
+
+                     )*/
+                    with(mDispenserEntity!!) {
+                        name = mBinding.etName.text.toString().trim()
+                        referencia = mBinding.etDescription.text.toString().trim()
+                        direccion = mBinding.etDireccion.text.toString().trim()
+                    }
+                    doAsync {
+                        if (mEditMode) DispenserApplication.dataBase.dispenserDao()
+                            .updateDispenser(mDispenserEntity!!)
+                        else mDispenserEntity!!.id = DispenserApplication.dataBase.dispenserDao()
+                            .addDispenser(mDispenserEntity!!)
+
+                        uiThread {
+                            hideKeyBoard()
+
+                            if (mEditMode) {
+                                mActivity?.updateDispense(mDispenserEntity!!)
+                                Snackbar.make(
+                                    mBinding.root,
+                                    R.string.edit_dispenser_message_update_success,
+                                    Snackbar.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                mActivity?.addDispenser(mDispenserEntity!!)
+
+                                Toast.makeText(
+                                    mActivity,
+                                    R.string.edit_dispenser_message_save_success,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                mActivity?.onBackPressed()
+                            }
+
+                        }
                     }
                 }
                 true
@@ -101,6 +145,42 @@ class EditDispenserFragment : Fragment() {
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun validateFields(vararg textFields: TextInputLayout): Boolean {
+        var isValid = true
+        for (textField in textFields) {
+            if (textField.editText?.text.toString().trim().isEmpty()) {
+                textField.error = getString(R.string.helper_required)
+                isValid = false
+            } else textField.error = null
+        }
+        if (!isValid) Snackbar.make(
+            mBinding.root,
+            R.string.edit_dispenser_message_Valid,
+            Snackbar.LENGTH_SHORT
+        ).show()
+        return isValid
+    }
+
+    private fun validateFields(): Boolean {
+        var isValid = true
+        if (mBinding.etDireccion.text.toString().trim().isEmpty()) {
+            mBinding.tilDireccion.error = getString(R.string.helper_required)
+            mBinding.etDireccion.requestFocus()
+            isValid = false
+        }
+        if (mBinding.etDescription.text.toString().trim().isEmpty()) {
+            mBinding.tilDescription.error = getString(R.string.helper_required)
+            mBinding.etDescription.requestFocus()
+            isValid = false
+        }
+        if (mBinding.etName.text.toString().trim().isEmpty()) {
+            mBinding.tilName.error = getString(R.string.helper_required)
+            mBinding.etName.requestFocus()
+            isValid = false
+        }
+        return isValid
     }
 
     //Oculta el teclado
@@ -122,12 +202,13 @@ class EditDispenserFragment : Fragment() {
 
     private fun setUiDispenser(dispenserEntity: DispenserEntity) {
         with(mBinding) {
-            etName.setText(dispenserEntity.name)
-            etDescription.setText(dispenserEntity.referencia)
-            etDireccion.setText(dispenserEntity.direccion)
-
+            etName.text = dispenserEntity.name.editable()
+            etDescription.text = dispenserEntity.referencia.editable()
+            etDireccion.text = dispenserEntity.direccion.editable()
         }
     }
+
+    private fun String.editable(): Editable = Editable.Factory.getInstance().newEditable(this)
 
     override fun onDestroyView() {
         hideKeyBoard()

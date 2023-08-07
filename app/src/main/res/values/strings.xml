@@ -1,16 +1,22 @@
 <resources>
     <string name="app_name">Smart Garbager Collector</string>
-    <string name="description_img_photo">Imagen de la tienda</string>
-    <string name="description_dispenser_add">Agregar dispensador</string>
+    <string name="description_img_photo">Image of the dispenser</string>
+    <string name="description_dispenser_add">Add dispenser</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hint_website">Nombre del dispensador</string>
-    <string name="hint_name">Nombre del contenedor</string>
-    <string name="helper_required">Requerido</string>
-    <string name="hint_description">Descripción</string>
-    <string name="hint_direccion">Dirección</string>
-    <string name="edit_dispenser_title_add">Crear dispensador</string>
+    <string name="hint_website">Dispenser name</string>
+    <string name="hint_name">Container name</string>
+    <string name="helper_required">Required</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_direccion">Address</string>
+    <string name="edit_dispenser_title_add">create dispenser</string>
     <string name="menu_save">Save</string>
-    <string name="edit_dispenser_message_save_success">Dispensador creado correctamente</string>
-    <string name="arg_id">key_id</string>
+    <string name="edit_dispenser_message_save_success">Dispenser created successfully</string>
+    <string name="arg_id" translatable="false">key_id</string>
+    <string name="edit_dispenser_message_update_success">Updated container</string>
+    <string name="edit_dispenser_message_Valid">Review the required fields</string>
+    <string name="edit_dispenser_message_edit">Edit store</string>
+    <string name="dialog_title_delete">Delete store</string>
+    <string name="dialog_delete_confirm">Delete</string>
+    <string name="dialog_delete_cancel">Cancel</string>
 </resources>

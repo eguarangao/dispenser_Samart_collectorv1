@@ -30,12 +30,21 @@ class DispenserDapter(
 
     override fun getItemCount(): Int = dispenseres.size
     fun add(dispenser: DispenserEntity) {
-        if(!dispenseres.contains(dispenser)){
+        if (!dispenseres.contains(dispenser)) {
             dispenseres.add(dispenser)
-            System.out.println(dispenser.toString()+"ebert")
-            notifyItemInserted(dispenseres.size-1)
+            System.out.println(dispenser.toString() + "ebert")
+            notifyItemInserted(dispenseres.size - 1)
         }
 
+    }
+
+    fun update(dispenser: DispenserEntity) {
+        val index = dispenseres.indexOf(dispenser)
+        if (index != -1) {
+            dispenseres.set(index, dispenser)
+            notifyItemChanged(index)
+
+        }
     }
 
     fun setDispenseres(dispenseres: MutableList<DispenserEntity>) {
