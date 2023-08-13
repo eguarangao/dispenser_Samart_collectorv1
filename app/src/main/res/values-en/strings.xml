@@ -3,9 +3,17 @@
     <string name="app_name">Smart Garbager Collector</string>
     <string name="description_img_photo">Imagen del dispensador</string>
     <string name="description_dispenser_add">Agregar dispensador</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- TODO: ACTIVITY LOGIN -->
     <string name="user_name_login">Nombre de usuario</string>
     <string name="password_login">Contraseña</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="login">Iniciar Sessión</string>
+    <!-- TODO: FRAGMENT CREAR USUARIO -->
+    <string name="first_name">Nombres</string>
+    <string name="last_name">Apellidos</string>
+    <string name="create_user">Crear una cuenta</string>
+    <string name="password_create">Repetir contraseña</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_website">Nombre del dispensador</string>

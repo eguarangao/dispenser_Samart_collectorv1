@@ -8,6 +8,14 @@
 
     <string name="user_name_login">User name</string>
     <string name="password_login">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+
+    <string name="first_name">First Name</string>
+    <string name="create_user">Create an account</string>
+    <string name="last_name">Last name</string>
+    <string name="password_create">Repeat password</string>
+
 
     <string name="hint_name">Container name</string>
     <string name="helper_required">Required</string>
