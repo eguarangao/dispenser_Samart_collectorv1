@@ -1,11 +1,17 @@
-package com.example.proyect01
+package com.example.proyect01.activity
 
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.proyect01.Adapter.DispenserDapter
+import com.example.proyect01.MainAux
+import com.example.proyect01.OnClickListener
+import com.example.proyect01.R
+import com.example.proyect01.database.DispenserApplication
 import com.example.proyect01.databinding.ActivityMainBinding
+import com.example.proyect01.entity.DispenserEntity
+import com.example.proyect01.fragment.EditDispenserFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread

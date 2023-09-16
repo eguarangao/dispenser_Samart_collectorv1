@@ -1,12 +1,12 @@
-package com.example.proyect01
+package com.example.proyect01.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import com.example.proyect01.R
 import com.example.proyect01.databinding.ActivityMainBinding
+import com.example.proyect01.fragment.SignFragment
 
 class Login : AppCompatActivity() {
     private lateinit var mBbinding: ActivityMainBinding

@@ -1,10 +1,11 @@
-package com.example.proyect01
+package com.example.proyect01.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.proyect01.R
 
 class SignFragment : Fragment() {
 

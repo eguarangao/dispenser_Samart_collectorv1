@@ -1,9 +1,10 @@
-package com.example.proyect01
+package com.example.proyect01.database
 
 import android.app.Application
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.proyect01.DispenserDataBase
 
 class DispenserApplication : Application() {
     companion object {

@@ -1,20 +1,22 @@
-package com.example.proyect01
+package com.example.proyect01.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.proyect01.OnClickListener
+import com.example.proyect01.R
 
 import com.example.proyect01.databinding.ItemDispenserBinding
+import com.example.proyect01.entity.DispenserEntity
 
 class DispenserDapter(
     private var dispenseres: MutableList<DispenserEntity>,
     private var listener: OnClickListener
 ) : RecyclerView.Adapter<DispenserDapter.ViewHolder>() {
     private lateinit var nContext: Context
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DispenserDapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         nContext = parent.context
         val view = LayoutInflater.from(nContext).inflate(R.layout.item_dispenser, parent, false)
         return ViewHolder(view)

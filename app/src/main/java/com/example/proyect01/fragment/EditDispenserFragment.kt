@@ -1,4 +1,4 @@
-package com.example.proyect01
+package com.example.proyect01.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -10,11 +10,13 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethod
 import android.view.inputmethod.InputMethodManager
-import android.widget.TimePicker
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import com.example.proyect01.entity.DispenserEntity
+import com.example.proyect01.activity.MainActivity
+import com.example.proyect01.R
+import com.example.proyect01.database.DispenserApplication
 import com.example.proyect01.databinding.FragmentEditDispenserBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
