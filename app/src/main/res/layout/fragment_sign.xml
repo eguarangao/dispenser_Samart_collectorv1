@@ -84,7 +84,7 @@
             app:counterMaxLength="@integer/counter_mas_name"
             app:endIconMode="clear_text"
             app:helperText="@string/helper_required"
-            app:startIconDrawable="@drawable/person">
+            app:startIconDrawable="@drawable/email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUserNameCreate"
@@ -115,7 +115,7 @@
 
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
-
+        <!-- Este es un comentario en XML
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilpasswordCreateRepeat"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -137,7 +137,7 @@
 
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
-
+        -->
         <Button
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
@@ -153,6 +153,19 @@
             app:cornerRadius="35px" />
 
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                style="?android:attr/progressBarStyleLarge"
+                android:visibility="gone" />
+
+
     </LinearLayout>
+
+
+
 
 </androidx.core.widget.NestedScrollView>

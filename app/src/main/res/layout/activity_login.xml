@@ -43,7 +43,7 @@
             app:counterMaxLength="@integer/counter_mas_name"
             app:endIconMode="clear_text"
             app:helperText="@string/helper_required"
-            app:startIconDrawable="@drawable/person">
+            app:startIconDrawable="@drawable/email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUserNameLogin"

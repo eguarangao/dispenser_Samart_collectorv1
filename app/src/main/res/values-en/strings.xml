@@ -5,7 +5,7 @@
     <string name="description_dispenser_add">Agregar dispensador</string>
 
     <!-- TODO: ACTIVITY LOGIN -->
-    <string name="user_name_login">Nombre de usuario</string>
+    <string name="user_name_login">Correo</string>
     <string name="password_login">Contraseña</string>
     <string name="sign_up">Registrarse</string>
     <string name="login">Iniciar Sessión</string>
